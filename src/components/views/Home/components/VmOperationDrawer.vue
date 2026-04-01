@@ -1,18 +1,20 @@
 <template>
-  <n-drawer 
+  <n-drawer
     v-model:show="visible"
-    :default-width="300"
+    :default-width="360"
     placement="right"
     resizable
   >
-    <n-drawer-content title="操作">
-      <n-grid cols="2 400:4 600:6" y-gap="10">
+    <n-drawer-content :title="`操作 · ${vmName || '未选择虚拟机'}`">
+      <p class="drawer-tip">操作将立即作用于当前虚拟机，请确认后执行。</p>
+      <n-grid cols="2" x-gap="10" y-gap="10">
         <n-grid-item v-for="operation in operations" :key="operation.key">
           <n-popover trigger="hover">
             <template #trigger>
               <n-button
                 type="primary"
                 :disabled="operation.disabled"
+                block
                 @click="handleOperation(operation.key)"
               >
                 {{ operation.label }}
@@ -27,8 +29,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, toRef } from 'vue'
-import { useVmOperations } from '../composables/useVmOperations';
+import { computed } from 'vue'
+import { useVmOperations } from '../composables/useVmOperations'
 
 const props = defineProps<{
   show: boolean
@@ -46,11 +48,17 @@ const visible = computed({
 })
 
 
-// 修改这部分代码
 const { operations, handleVmOperation } = useVmOperations(computed(() => props.vmName))
 
 const handleOperation = async (key: string) => {
   await handleVmOperation(key)
   emit('refresh')
 }
-</script> 
+</script>
+
+<style scoped>
+.drawer-tip {
+  margin: 0 0 12px;
+  color: #5f6f86;
+}
+</style>

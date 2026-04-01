@@ -13,6 +13,8 @@
     "windows": [
       {
         "title": "内网控制台",
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
         "width": 800,
         "height": 600
       }
