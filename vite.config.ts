@@ -1,45 +1,15 @@
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { resolve } from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      "@": resolve(__dirname, 'src'), // 路径别名
-    }
+      "@": resolve(__dirname, "src"),
+    },
   },
-  plugins: [
-    vue(),
-    AutoImport({
-      imports: [
-        'vue',
-        {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar'
-          ]
-        }
-      ]
-    }),
-    Components({
-      resolvers: [NaiveUiResolver()]
-    })
-  ],
-  optimizeDeps: {
-    include: [
-      'pinia', 
-      'pinia-plugin-persistedstate', 
-      'nprogress', 
-      'axios', 
-      'qs'
-    ]
-  },
+  plugins: [react()],
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   // prevent vite from obscuring rust errors
   clearScreen: false,

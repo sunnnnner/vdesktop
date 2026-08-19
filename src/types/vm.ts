@@ -4,11 +4,17 @@ export interface User {
   name: string
 }
 
+export interface Node {
+  id: number
+  ip: string
+  name: string
+}
+
 export interface Machine {
   id: number
   name: string
   vmid: string
-  node: string
+  node: Node
   locked_by: User | null
 }
 
