@@ -9,6 +9,12 @@ import {
   type ReactNode,
 } from "react";
 
+import {
+  AlertCircleIcon,
+  CheckIcon,
+  CloseIcon,
+} from "./Icons";
+
 type ToastKind = "success" | "error";
 
 interface Toast {
@@ -48,7 +54,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       const timeoutId = window.setTimeout(() => {
         dismiss(id);
         timeoutIds.current = timeoutIds.current.filter((item) => item !== timeoutId);
-      }, 4_000);
+      }, 3_500);
       timeoutIds.current.push(timeoutId);
     },
     [dismiss],
@@ -65,18 +71,39 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <div className="toast-stack" aria-live="polite" aria-relevant="additions">
+      <div
+        className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"
+        aria-live="polite"
+        aria-relevant="additions"
+      >
         {toasts.map((toast) => (
-          <div className={`toast toast--${toast.kind}`} key={toast.id} role="status">
-            <span>{toast.message}</span>
+          <div
+            className="pointer-events-auto flex items-center justify-between gap-3 min-w-[280px] max-w-[420px] p-3 bg-white text-zinc-900 border border-zinc-200/90 rounded-xl shadow-panel text-xs"
+            key={toast.id}
+            role="status"
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              {toast.kind === "success" ? (
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200/60 shrink-0">
+                  <CheckIcon size={12} />
+                </span>
+              ) : (
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-red-50 text-red-600 border border-red-200/60 shrink-0">
+                  <AlertCircleIcon size={12} />
+                </span>
+              )}
+              <span className="font-medium text-zinc-800 leading-snug break-words">
+                {toast.message}
+              </span>
+            </div>
             <button
-              aria-label="关闭提示"
-              className="toast-dismiss"
+              aria-label="关闭通知"
+              className="flex items-center justify-center w-5 h-5 text-zinc-400 hover:text-zinc-700 rounded transition-colors shrink-0"
               onClick={() => dismiss(toast.id)}
               title="关闭"
               type="button"
             >
-              x
+              <CloseIcon size={12} />
             </button>
           </div>
         ))}

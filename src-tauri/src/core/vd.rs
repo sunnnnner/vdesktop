@@ -8,6 +8,7 @@ use super::{
 use crate::{utils::error::Error, Result};
 #[cfg(windows)]
 use registry::{Data, Hive, Security};
+#[cfg(unix)]
 use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::{path::PathBuf, sync::Arc};
@@ -22,6 +23,8 @@ impl Vd {
     pub fn new(config: Config) -> Result<Self> {
         let client = tauri_plugin_http::reqwest::Client::builder()
             .timeout(std::time::Duration::from_secs(10))
+            .no_proxy()
+            .danger_accept_invalid_certs(true)
             .build()?;
         Ok(Self { client, config })
     }
@@ -177,6 +180,7 @@ impl Vd {
             file.flush().await?;
         }
 
+        #[cfg(unix)]
         // 设置配置文件权限
         tokio::fs::set_permissions(
             &remote_viewer_config,
