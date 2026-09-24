@@ -8,17 +8,14 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
-          "Roboto",
           '"PingFang SC"',
           '"Microsoft YaHei"',
           "sans-serif",
         ],
         mono: [
-          '"JetBrains Mono"',
           '"SF Mono"',
           "Menlo",
           "Monaco",
@@ -27,19 +24,22 @@ export default {
         ],
       },
       colors: {
-        brand: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          500: "#0284c7",
-          600: "#0369a1",
-          900: "#0c4a6e",
+        neu: {
+          bg: "#e0e5ec",
+          raised: "#f0f0f3",
+          dark: "#b8bcc2",
+          light: "#ffffff",
+          accent: "#6d5dfc",
         },
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.04)",
-        card: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",
-        panel: "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)",
-        overlay: "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.06)",
+        "neu-flat": "8px 8px 16px #b8bcc2, -8px -8px 16px #ffffff",
+        "neu-flat-sm": "4px 4px 8px #b8bcc2, -4px -4px 8px #ffffff",
+        "neu-flat-md": "6px 6px 12px #b8bcc2, -6px -6px 12px #ffffff",
+        "neu-flat-lg": "12px 12px 24px #b8bcc2, -12px -12px 24px #ffffff",
+        "neu-inset": "inset 4px 4px 8px #b8bcc2, inset -4px -4px 8px #ffffff",
+        "neu-inset-sm": "inset 2px 2px 4px #b8bcc2, inset -2px -2px 4px #ffffff",
+        "neu-inset-md": "inset 6px 6px 12px #b8bcc2, inset -6px -6px 12px #ffffff",
       },
     },
   },

@@ -395,3 +395,61 @@ export function GlobeIcon({ size = 14, className = "", ...props }: IconProps) {
     </svg>
   );
 }
+
+export function MinusIcon({ size = 14, className = "", ...props }: IconProps) {
+  return (
+    <svg
+      fill="none"
+      height={size}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      width={size}
+      className={className}
+      {...props}
+    >
+      <line x1="5" x2="19" y1="12" y2="12" />
+    </svg>
+  );
+}
+
+export function SquareIcon({ size = 14, className = "", ...props }: IconProps) {
+  return (
+    <svg
+      fill="none"
+      height={size}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.75"
+      viewBox="0 0 24 24"
+      width={size}
+      className={className}
+      {...props}
+    >
+      <rect height="14" rx="2" width="14" x="5" y="5" />
+    </svg>
+  );
+}
+
+export function RestoreIcon({ size = 14, className = "", ...props }: IconProps) {
+  return (
+    <svg
+      fill="none"
+      height={size}
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.75"
+      viewBox="0 0 24 24"
+      width={size}
+      className={className}
+      {...props}
+    >
+      <path d="M8 4h10a2 2 0 0 1 2 2v10" />
+      <rect height="12" rx="2" width="12" x="4" y="8" />
+    </svg>
+  );
+}

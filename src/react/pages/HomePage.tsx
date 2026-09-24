@@ -147,111 +147,111 @@ export function HomePage() {
       {/* 顶部 Page Header */}
       <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-1">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-zinc-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-800">
             虚拟机实例
           </h1>
-          <p className="mt-0.5 text-xs text-zinc-500">
+          <p className="mt-1 text-xs text-gray-600">
             实时监控集群内虚拟化计算资源的运行状态、会话锁定与远程访问
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <button
-            className="inline-flex items-center gap-1.5 h-8 px-3 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 rounded-lg shadow-xs transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 h-9 px-4 text-xs font-medium text-gray-700 bg-[#e0e5ec] rounded-xl shadow-[6px_6px_12px_#b8bcc2,-6px_-6px_12px_#ffffff] hover:shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] active:shadow-[inset_4px_4px_8px_#b8bcc2,inset_-4px_-4px_8px_#ffffff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
             disabled={refreshing || tableLoading}
             onClick={() => void handleManualRefresh()}
             title="刷新集群虚拟机列表"
             type="button"
           >
-            <RefreshIcon className={refreshing || tableLoading ? "animate-spin-fast" : ""} size={13} />
+            <RefreshIcon className={refreshing || tableLoading ? "animate-spin-fast text-gray-600" : "text-gray-600"} size={13} />
             <span>{refreshing || tableLoading ? "同步中" : "同步数据"}</span>
           </button>
-          <span className="text-[11px] text-zinc-400 font-mono">
+          <span className="text-xs text-gray-500 font-mono">
             {lastRefreshTime !== "--" ? `上次同步 ${lastRefreshTime}` : "尚未同步"}
           </span>
         </div>
       </section>
 
-      {/* 统计指标卡片 (Linear 风格轻量 Widgets) */}
-      <section aria-label="集群资源概览" className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+      {/* 统计指标卡片 (Neumorphism 风格立体 Widgets) */}
+      <section aria-label="集群资源概览" className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         {/* 卡片 1 */}
-        <div className="bg-white border border-zinc-200/90 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-zinc-500 mb-2">
-            <span className="text-xs font-medium">总分配实例</span>
-            <span className="text-zinc-400">
-              <VmIcon size={15} />
+        <div className="bg-[#e0e5ec] rounded-2xl shadow-[8px_8px_16px_#b8bcc2,-8px_-8px_16px_#ffffff] p-5 sm:p-6 border-0">
+          <div className="flex items-center justify-between text-gray-600 mb-3">
+            <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">总分配实例</span>
+            <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-[#e0e5ec] text-gray-600 shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]">
+              <VmIcon size={16} />
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-semibold tracking-tight text-zinc-900 font-mono">
+            <span className="text-3xl font-semibold tracking-tight text-gray-800 font-mono">
               {tableData.length}
             </span>
-            <span className="text-[11px] text-zinc-400 font-medium">台虚拟机</span>
+            <span className="text-xs text-gray-500 font-medium">台虚拟机</span>
           </div>
         </div>
 
         {/* 卡片 2 */}
-        <div className="bg-white border border-zinc-200/90 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-zinc-500 mb-2">
-            <span className="text-xs font-medium">当前会话锁定</span>
-            <span className="text-amber-500">
-              <LockIcon size={15} />
+        <div className="bg-[#e0e5ec] rounded-2xl shadow-[8px_8px_16px_#b8bcc2,-8px_-8px_16px_#ffffff] p-5 sm:p-6 border-0">
+          <div className="flex items-center justify-between text-gray-600 mb-3">
+            <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">当前会话锁定</span>
+            <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-[#e0e5ec] text-amber-600 shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]">
+              <LockIcon size={16} />
             </span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-semibold tracking-tight text-amber-600 font-mono">
+            <span className="text-3xl font-semibold tracking-tight text-amber-600 font-mono">
               {lockedCount}
             </span>
-            <span className="text-[11px] text-zinc-400 font-medium">已占用会话</span>
+            <span className="text-xs text-gray-500 font-medium">已占用会话</span>
           </div>
         </div>
 
         {/* 卡片 3 */}
-        <div className="bg-white border border-zinc-200/90 rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between text-zinc-500 mb-2">
-            <span className="text-xs font-medium">活动接入集群</span>
-            <span className="text-emerald-500">
-              <ServerIcon size={15} />
+        <div className="bg-[#e0e5ec] rounded-2xl shadow-[8px_8px_16px_#b8bcc2,-8px_-8px_16px_#ffffff] p-5 sm:p-6 border-0">
+          <div className="flex items-center justify-between text-gray-600 mb-3">
+            <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">活动接入集群</span>
+            <span className="flex items-center justify-center w-8 h-8 rounded-xl bg-[#e0e5ec] text-emerald-600 shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]">
+              <ServerIcon size={16} />
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span className="text-base font-semibold tracking-tight text-zinc-900">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
+            <span className="text-base font-semibold tracking-tight text-gray-800">
               {currentServerLabel}节点
             </span>
-            <span className="text-[11px] text-zinc-400 font-mono">(在线)</span>
+            <span className="text-xs text-emerald-600 font-mono font-medium">(在线)</span>
           </div>
         </div>
       </section>
 
       {/* 节点选择与列表主卡片 */}
-      <section aria-labelledby="cluster-instances-title" className="bg-white border border-zinc-200/90 rounded-xl shadow-xs overflow-hidden">
+      <section aria-labelledby="cluster-instances-title" className="bg-[#e0e5ec] rounded-2xl shadow-[8px_8px_16px_#b8bcc2,-8px_-8px_16px_#ffffff] md:shadow-[12px_12px_24px_#b8bcc2,-12px_-12px_24px_#ffffff] p-5 sm:p-7 border-0 overflow-hidden">
         {/* 卡片顶控制条 */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 py-3.5 border-b border-zinc-200/80 bg-zinc-50/40">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#cbd2db]/60">
           <div>
-            <h2 id="cluster-instances-title" className="text-xs font-semibold text-zinc-900 tracking-tight uppercase">
+            <h2 id="cluster-instances-title" className="text-sm font-semibold text-gray-800 tracking-tight uppercase">
               集群实例列表
             </h2>
           </div>
 
-          {/* 集群筛选 Tabs */}
-          <div className="flex p-0.5 bg-zinc-100 rounded-lg border border-zinc-200/70 gap-0.5 self-start sm:self-auto" role="group">
+          {/* 集群筛选 Tabs (凹陷底座与凸起按钮) */}
+          <div className="flex p-1.5 bg-[#e0e5ec] rounded-xl shadow-[inset_4px_4px_8px_#b8bcc2,inset_-4px_-4px_8px_#ffffff] gap-2 self-start sm:self-auto border-0" role="group">
             {SERVER_OPTIONS.map((server) => {
               const isActive = currentServer === server.value;
               return (
                 <button
                   aria-pressed={isActive}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-md transition-all ${
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-xl transition-all duration-300 ease-in-out border-0 ${
                     isActive
-                      ? "bg-white text-zinc-900 font-semibold shadow-xs"
-                      : "text-zinc-500 hover:text-zinc-800"
+                      ? "bg-[#e0e5ec] text-[#6d5dfc] font-semibold shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] active:shadow-[inset_4px_4px_8px_#b8bcc2,inset_-4px_-4px_8px_#ffffff]"
+                      : "text-gray-600 hover:text-gray-800 hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]"
                   }`}
                   disabled={refreshing}
                   key={server.value}
                   onClick={() => void handleServerChange(server.value)}
                   type="button"
                 >
-                  <GlobeIcon size={12} className={isActive ? "text-zinc-900" : "text-zinc-400"} />
+                  <GlobeIcon size={12} className={isActive ? "text-[#6d5dfc]" : "text-gray-400"} />
                   <span>{server.label}集群</span>
                 </button>
               );
@@ -260,31 +260,31 @@ export function HomePage() {
         </div>
 
         {/* 表格容器 */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mt-2">
           <table aria-busy={tableLoading} className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-zinc-200 bg-zinc-50/70 text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
-                <th className="w-16 py-2.5 px-4 text-center">序号</th>
-                <th className="py-2.5 px-4 min-w-[140px]">实例名称</th>
-                <th className="py-2.5 px-4 min-w-[150px]">状态与占用者</th>
-                <th className="py-2.5 px-4 text-right min-w-[340px]">快捷操作</th>
+              <tr className="border-b border-[#cbd2db]/60 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="w-16 py-3 px-4 text-center">序号</th>
+                <th className="py-3 px-4 min-w-[140px]">实例名称</th>
+                <th className="py-3 px-4 min-w-[150px]">状态与占用者</th>
+                <th className="py-3 px-4 text-right min-w-[340px]">快捷操作</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100 text-xs">
+            <tbody className="divide-y divide-[#cbd2db]/40 text-xs">
               {tableLoading ? (
                 <tr>
-                  <td colSpan={4} className="py-12 text-center text-zinc-400">
+                  <td colSpan={4} className="py-14 text-center text-gray-500">
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <RefreshIcon className="animate-spin-fast text-zinc-400" size={18} />
+                      <RefreshIcon className="animate-spin-fast text-gray-500" size={20} />
                       <span className="text-xs">正在从集群同步虚拟机数据...</span>
                     </div>
                   </td>
                 </tr>
               ) : tableData.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="py-12 text-center text-zinc-400">
+                  <td colSpan={4} className="py-14 text-center text-gray-500">
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <VmIcon size={24} className="text-zinc-300" />
+                      <VmIcon size={28} className="text-gray-400" />
                       <span className="text-xs">当前集群节点下暂无实例</span>
                     </div>
                   </td>
@@ -299,32 +299,32 @@ export function HomePage() {
                   return (
                     <tr
                       key={`${machine.no}-${machine.name}`}
-                      className="hover:bg-zinc-50/80 transition-colors"
+                      className="hover:bg-[#d8dde5]/40 transition-colors"
                     >
                       {/* 序号 */}
-                      <td className="py-3 px-4 text-center font-mono text-zinc-400 text-xs">
+                      <td className="py-3.5 px-4 text-center font-mono text-gray-400 text-xs">
                         {String(machine.no).padStart(2, "0")}
                       </td>
 
                       {/* 实例名称 */}
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2.5 font-medium text-zinc-900">
-                          <div className="flex items-center justify-center w-6 h-6 rounded bg-zinc-100 text-zinc-600">
+                      <td className="py-3.5 px-4">
+                        <div className="flex items-center gap-2.5 font-medium text-gray-800">
+                          <div className="flex items-center justify-center w-7 h-7 rounded-xl bg-[#e0e5ec] text-gray-600 shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]">
                             <VmIcon size={14} />
                           </div>
-                          <span className="font-medium">{machine.name}</span>
+                          <span className="font-medium text-sm">{machine.name}</span>
                         </div>
                       </td>
 
                       {/* 状态与占用者 */}
-                      <td className="py-3 px-4">
+                      <td className="py-3.5 px-4">
                         {isLocked ? (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-medium text-amber-700 bg-amber-50 border border-amber-200/70 rounded-full">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-amber-700 bg-[#e0e5ec] rounded-xl shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]">
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                             <span>已锁定 · {machine.locked}</span>
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/70 rounded-full">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-emerald-700 bg-[#e0e5ec] rounded-xl shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff]">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                             <span>空闲就绪</span>
                           </span>
@@ -332,11 +332,11 @@ export function HomePage() {
                       </td>
 
                       {/* 直接内联的快捷操作按钮组 */}
-                      <td className="py-3 px-4 text-right">
-                        <div className="inline-flex items-center gap-1.5 justify-end">
+                      <td className="py-3.5 px-4 text-right">
+                        <div className="inline-flex items-center gap-2 justify-end">
                           {/* 1. 启动界面 (核心操作) */}
                           <button
-                            className="inline-flex items-center gap-1 h-7 px-2.5 text-xs font-medium text-white bg-zinc-900 hover:bg-zinc-800 rounded-md shadow-xs transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-1.5 h-8 px-3 text-xs font-medium text-white bg-[#6d5dfc] rounded-xl shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_3px_3px_6px_#4a3cc0,inset_-3px_-3px_6px_#8f7eff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
                             disabled={isBusy}
                             onClick={() => void handleVmAction(machine.name, "spice_viewer", "启动界面")}
                             title="启动 Remote Viewer 远程桌面并锁定"
@@ -352,7 +352,7 @@ export function HomePage() {
 
                           {/* 2. 开机 */}
                           <button
-                            className="inline-flex items-center gap-1 h-7 px-2 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 rounded-md shadow-xs transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-1 h-8 px-2.5 text-xs font-medium text-gray-700 bg-[#e0e5ec] rounded-xl shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_3px_3px_6px_#b8bcc2,inset_-3px_-3px_6px_#ffffff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
                             disabled={isBusy}
                             onClick={() => void handleVmAction(machine.name, "start_vms", "开机")}
                             title="开启虚拟机"
@@ -368,7 +368,7 @@ export function HomePage() {
 
                           {/* 3. 关机 */}
                           <button
-                            className="inline-flex items-center gap-1 h-7 px-2 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 rounded-md shadow-xs transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-1 h-8 px-2.5 text-xs font-medium text-gray-700 bg-[#e0e5ec] rounded-xl shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_3px_3px_6px_#b8bcc2,inset_-3px_-3px_6px_#ffffff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
                             disabled={isBusy}
                             onClick={() => void handleVmAction(machine.name, "stop_vms", "关机")}
                             title="正常关闭虚拟机"
@@ -385,7 +385,7 @@ export function HomePage() {
                           {/* 4. 锁定 / 解锁 (智能按状态呈现) */}
                           {isLocked ? (
                             <button
-                              className="inline-flex items-center gap-1 h-7 px-2 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 rounded-md shadow-xs transition-colors disabled:opacity-50"
+                              className="inline-flex items-center gap-1 h-8 px-2.5 text-xs font-medium text-gray-700 bg-[#e0e5ec] rounded-xl shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_3px_3px_6px_#b8bcc2,inset_-3px_-3px_6px_#ffffff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
                               disabled={isBusy}
                               onClick={() => void handleVmAction(machine.name, "unlock_vms", "解锁")}
                               title="解除当前锁定"
@@ -400,7 +400,7 @@ export function HomePage() {
                             </button>
                           ) : (
                             <button
-                              className="inline-flex items-center gap-1 h-7 px-2 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 rounded-md shadow-xs transition-colors disabled:opacity-50"
+                              className="inline-flex items-center gap-1 h-8 px-2.5 text-xs font-medium text-gray-700 bg-[#e0e5ec] rounded-xl shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_3px_3px_6px_#b8bcc2,inset_-3px_-3px_6px_#ffffff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
                               disabled={isBusy}
                               onClick={() => void handleVmAction(machine.name, "lock_vms", "锁定")}
                               title="锁定当前虚拟机"
@@ -417,7 +417,7 @@ export function HomePage() {
 
                           {/* 5. 强制关机 */}
                           <button
-                            className="inline-flex items-center gap-1 h-7 px-2 text-xs font-medium text-red-600 bg-red-50/60 border border-red-200/80 hover:bg-red-100/80 hover:text-red-700 rounded-md shadow-xs transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-1 h-8 px-2.5 text-xs font-medium text-red-600 bg-[#e0e5ec] rounded-xl shadow-[4px_4px_8px_#b8bcc2,-4px_-4px_8px_#ffffff] hover:shadow-[2px_2px_4px_#b8bcc2,-2px_-2px_4px_#ffffff] active:shadow-[inset_3px_3px_6px_#b8bcc2,inset_-3px_-3px_6px_#ffffff] transition-all duration-300 ease-in-out border-0 disabled:opacity-50"
                             disabled={isBusy}
                             onClick={() => void handleVmAction(machine.name, "force_stop_vms", "强制关机", true)}
                             title="立即断电强制关闭"

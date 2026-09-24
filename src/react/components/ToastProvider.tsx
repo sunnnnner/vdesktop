@@ -78,32 +78,32 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       >
         {toasts.map((toast) => (
           <div
-            className="pointer-events-auto flex items-center justify-between gap-3 min-w-[280px] max-w-[420px] p-3 bg-white text-zinc-900 border border-zinc-200/90 rounded-xl shadow-panel text-xs"
+            className="pointer-events-auto flex items-center justify-between gap-3 min-w-[280px] max-w-[420px] p-4 bg-[#e0e5ec] text-gray-800 border-0 rounded-2xl shadow-[8px_8px_16px_#b8bcc2,-8px_-8px_16px_#ffffff] text-xs transition-all duration-300 ease-in-out"
             key={toast.id}
             role="status"
           >
-            <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
               {toast.kind === "success" ? (
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200/60 shrink-0">
-                  <CheckIcon size={12} />
+                <span className="flex items-center justify-center w-7 h-7 rounded-xl bg-[#e0e5ec] text-emerald-600 shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff] shrink-0">
+                  <CheckIcon size={14} />
                 </span>
               ) : (
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-red-50 text-red-600 border border-red-200/60 shrink-0">
-                  <AlertCircleIcon size={12} />
+                <span className="flex items-center justify-center w-7 h-7 rounded-xl bg-[#e0e5ec] text-red-600 shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff] shrink-0">
+                  <AlertCircleIcon size={14} />
                 </span>
               )}
-              <span className="font-medium text-zinc-800 leading-snug break-words">
+              <span className="font-medium text-gray-800 leading-snug break-words">
                 {toast.message}
               </span>
             </div>
             <button
               aria-label="关闭通知"
-              className="flex items-center justify-center w-5 h-5 text-zinc-400 hover:text-zinc-700 rounded transition-colors shrink-0"
+              className="flex items-center justify-center w-7 h-7 bg-[#e0e5ec] text-gray-500 hover:text-gray-800 rounded-xl shadow-[3px_3px_6px_#b8bcc2,-3px_-3px_6px_#ffffff] hover:shadow-[1px_1px_3px_#b8bcc2,-1px_-1px_3px_#ffffff] active:shadow-[inset_2px_2px_4px_#b8bcc2,inset_-2px_-2px_4px_#ffffff] transition-all duration-300 ease-in-out shrink-0 border-0"
               onClick={() => dismiss(toast.id)}
               title="关闭"
               type="button"
             >
-              <CloseIcon size={12} />
+              <CloseIcon size={13} />
             </button>
           </div>
         ))}
