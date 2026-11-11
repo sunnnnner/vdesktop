@@ -4,7 +4,12 @@
 
 @layer base {
   :root {
-    --bg-page: #e0e5ec;
+    --bg-page: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-card: #e2e8f0;
+    --primary-blue: #1677ff;
   }
 
   * {
@@ -21,9 +26,9 @@
   }
 
   body {
-    background-color: #e0e5ec;
-    color: #333333;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -36,26 +41,26 @@
 
   button:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.55;
   }
 
-  /* Neumorphic soft scrollbar */
+  /* 现代平滑精致滚动条 (Ant Design / M3 极简风格) */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #e0e5ec;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #c3c8cf;
+    background: #cbd5e1;
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #b8bcc2;
+    background: #94a3b8;
   }
 }
 
